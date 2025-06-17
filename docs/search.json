@@ -37,7 +37,7 @@
     "href": "Summarising Data.html#activities",
     "title": "2  Summarising Data",
     "section": "2.4 Activities",
-    "text": "2.4 Activities\n\n2.4.1 6.9\n\nViolin Plots\n\n\n\n2.4.2 6.10\n\nDot plots\n\n\n\n2.4.3 6.1.3\n\nOptions for histograms\n\n\n\n2.4.4 6.6.3\n\nOptions for density curves\n\n\n\n2.4.5 6.6.3\n\nOptions for boxplots",
+    "text": "2.4 Activities\nFrom Winston Chang’s R Graphics Cookbook:\n\n2.4.1 6.9\n\nViolin Plots\n\n\n\n2.4.2 6.10\n\nDot plots\n\n\n\n2.4.3 6.1.3\n\nOptions for histograms\n\n\n\n2.4.4 6.6.3\n\nOptions for density curves\n\n\n\n2.4.5 6.6.3\n\nOptions for boxplots",
     "crumbs": [
       "Unit 1: Working with Data",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summarising Data</span>"
@@ -92,7 +92,7 @@
     "href": "Line Graphs.html#activities",
     "title": "4  Line Graphs",
     "section": "4.3 Activities",
-    "text": "4.3 Activities\nSo, what can you do to visualise this and create an appropriate line graph?* Consider using the linetype, shape, or color options in the aes() functions.\nThere are also other versions of line graphs that Chang provides instruction on.\n\n4.3.1 4.6\n\nLine graphs with shaded area.\n\n\n\n4.3.2 4.7\n\nStacked area graphs. CAUTION - Not easy to interpret.\n\n*My Answer\n\nggplot(tg, aes(x = dose, y = length, linetype = supp, shape = supp, colour = supp)) +\n  geom_line(size = 0.25) +\n  geom_point(size = 3)",
+    "text": "4.3 Activities\nSo, what can you do to visualise this and create an appropriate line graph?* Consider using the linetype, shape, or color options in the aes() functions.\nFrom Winston Chang’s R Graphics Cookbook:\n\n4.3.1 4.6\n\nLine graphs with shaded area.\n\n\n\n4.3.2 4.7\n\nStacked area graphs. CAUTION - Not easy to interpret.\n\n*My Answer\n\nggplot(tg, aes(x = dose, y = length, linetype = supp, shape = supp, colour = supp)) +\n  geom_line(size = 0.25) +\n  geom_point(size = 3)",
     "crumbs": [
       "Unit 2: Visualising Data",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Line Graphs</span>"
@@ -103,7 +103,7 @@
     "href": "Scatterplots.html",
     "title": "5  Scatter Plots",
     "section": "",
-    "text": "5.1 Activity\nToday we are going through scatter plots drawing from Chapter 5 of Chang’s book. Here, I add a few comments for you to consider in addition to Chang’s comments.\nScatter plots are most useful if you have two variables in your dataset that are continuous. This is to say, they are both numeric data. A scatter plot positions one of the variables on the x axis of the graph and the other on the y axis. Each observation (unique row) is represented as a dot in the graph on the coordinates of their x and y axes.\nHere, we use the heigthweight dataset from the package “gcookbook” that Chang provides. We plot the height of the respondents alongside their age. To do this, we follow the ggplot2 formula: use the ggplot() function, tell R which dataset we are using (in this case, the heightweight), setting a basic aesthetic, then telling R what type of plot to produce. For scatter plots, we use geom_point() - the dots I mentioned above.\nIf each point represents an individual, what are some conclusions that you can draw from this? Is there a relationship between age and height in this dataset?\nThere are ways we can enhance this visual to make the relationship clearer. One approach is to highlight the density contours of the data. The contours from stat_density2d() represent estimated regions of equal point density. Smaller and tighter contours—or darker filled regions when using geom = “polygon” with a fill aesthetic—generally indicate areas where data points are more densely clustered. This is similar to how contour lines on a topographic map represent changes in elevation.\nAn alternate version of this is to use the fill.\nWe can enhance a scatter plot to better visualize the relationship between two variables by adding a regression line (or line of best fit). This line represents the best-fitting linear relationship that explains the variation between the variables. If there is a positive relationship, the line will slope upward, indicating that one variable tends to increase as the other does. Conversely, a negative relationship will result in a downward-sloping line—for example, if older individuals tended to be shorter.\nWhat does this plot say about the relationship between height and age in this dataset? Note, the grey area surrounding the line? This is a confidence interval denoting that we can be 95% sure that the true line of best fit lies within those margins.\nFinally, we can use some further characteristics about these individuals to filter the dataset and provide even more information. In this instance, we have the repsondent’s sex. Here, we use the ‘color’ option in the aesthetic argument to change the colour of the points to match the observation’s sex.\nAlternatively, you can change the point shapes to reflect the same thing. This is an important thing to consider when visualising data. You want to enable all to interpret your data. Therefore, considering not everyone can see colours, it may be best to also change the shape. Here I use the ‘shape’ option to show one shape for male and another for female.\nNow we can fit the same line of best fit as we did before but have a separate line for men and women.\nWhat can you conclude from this plot about how the relationship between height and age differs for men and women?\nIf the points are distracting, you can just plot the line of best fit. I have also removed the confidence intervals using the se = False.\nAlternatively, you can use the facet_grid() argument to split the plot into two plots based on the sex variable.\nFinally, you can create a scatter plot matrix to demosntrate the pairwise relationship of multiple variables in your dataset. Please note, I think the utility of these visualisations are limited. Their main usage is to you the data scientist to take a quick look at pairwise associations (two variables) in your dataset. I strongly advise you ti create simpler plots for clients (or stakeholders).\nScatter plot matrices present the paired associations between all of the variables in a dataset. Here, for simplification, I am going to create a subset of the heightweight dataset that Chang’s book provides us with.\nI use the head() function to look at the top rows of the dataset. This reveals that we have age in months and years. I am going to remove one of these and use the pairs() function to create a a scatter plot matrix.\nThe select() function enables you to pull select a subset of variables in the dataset. Using the minus sign drops that variable - in this case, adeMonth.\nNow we can plot our pairwise scatter plot matrix. These are a little funky when you first see them, so take some time to learn this.\nTake a look at this matrix and you will see in the central diagonal cells the names of the variables that we have in our dataset. This diagonal acts as a sort of mirror for the visualisation. Since scatter plots are inherently pairwise visualisations, we interpret each “cell” in this matrix, each plot as a pairwise depiction of the variables on the diagonal.\nFor our purposes, let’s name the rows in this matrix 1-4 (top to bottom) and the columns A-D (left to right). In this plot cell 1A has the variable sex. Cell 1B Therefore has the scatter plot of ageyear (in cell B2) and sex (1A). Age is on the x axis while sex is on the y. Cell 2C, then, shows the scatter plot between age and height (the one we have been looking at so far). Finally, 3D shows the scatter plot of height and weight. Following this logic, then What is represented in cell 1C?\nSex is on the y axis and height in on the x axis. The left side of this matrix, “under” the diagonal, is just the reverse of what we have discussed with the axes flipped.\nIs this starting to make sense? Spend some time now to familiarise yourself with this and describe with a partner the apparent association between each of the pairs (don’t worry about the sex variable).\nChang adds some more insight into what you can do with scatter plots. From the following recipes in Chapter 5, select one or two and discuss their utility with a partner.",
+    "text": "5.1 Activity\nToday we are going through scatter plots drawing from Chapter 5 of Chang’s book. Here, I add a few comments for you to consider in addition to Chang’s comments.\nScatter plots are most useful if you have two variables in your dataset that are continuous. This is to say, they are both numeric data. A scatter plot positions one of the variables on the x axis of the graph and the other on the y axis. Each observation (unique row) is represented as a dot in the graph on the coordinates of their x and y axes.\nHere, we use the heigthweight dataset from the package “gcookbook” that Chang provides. We plot the height of the respondents alongside their age. To do this, we follow the ggplot2 formula: use the ggplot() function, tell R which dataset we are using (in this case, the heightweight), setting a basic aesthetic, then telling R what type of plot to produce. For scatter plots, we use geom_point() - the dots I mentioned above.\nIf each point represents an individual, what are some conclusions that you can draw from this? Is there a relationship between age and height in this dataset?\nThere are ways we can enhance this visual to make the relationship clearer. One approach is to highlight the density contours of the data. The contours from stat_density2d() represent estimated regions of equal point density. Smaller and tighter contours—or darker filled regions when using geom = “polygon” with a fill aesthetic—generally indicate areas where data points are more densely clustered. This is similar to how contour lines on a topographic map represent changes in elevation.\nAn alternate version of this is to use the fill.\nWe can enhance a scatter plot to better visualize the relationship between two variables by adding a regression line (or line of best fit). This line represents the best-fitting linear relationship that explains the variation between the variables. If there is a positive relationship, the line will slope upward, indicating that one variable tends to increase as the other does. Conversely, a negative relationship will result in a downward-sloping line—for example, if older individuals tended to be shorter.\nWhat does this plot say about the relationship between height and age in this dataset? Note, the grey area surrounding the line? This is a confidence interval denoting that we can be 95% sure that the true line of best fit lies within those margins.\nFinally, we can use some further characteristics about these individuals to filter the dataset and provide even more information. In this instance, we have the repsondent’s sex. Here, we use the ‘color’ option in the aesthetic argument to change the colour of the points to match the observation’s sex.\nAlternatively, you can change the point shapes to reflect the same thing. This is an important thing to consider when visualising data. You want to enable all to interpret your data. Therefore, considering not everyone can see colours, it may be best to also change the shape. Here I use the ‘shape’ option to show one shape for male and another for female.\nNow we can fit the same line of best fit as we did before but have a separate line for men and women.\nWhat can you conclude from this plot about how the relationship between height and age differs for men and women?\nIf the points are distracting, you can just plot the line of best fit. I have also removed the confidence intervals using the se = False.\nAlternatively, you can use the facet_grid() argument to split the plot into two plots based on the sex variable.\nFinally, you can create a scatter plot matrix to demosntrate the pairwise relationship of multiple variables in your dataset. Please note, I think the utility of these visualisations are limited. Their main usage is to you the data scientist to take a quick look at pairwise associations (two variables) in your dataset. I strongly advise you ti create simpler plots for clients (or stakeholders).\nScatter plot matrices present the paired associations between all of the variables in a dataset. Here, for simplification, I am going to create a subset of the heightweight dataset that Chang’s book provides us with.\nI use the head() function to look at the top rows of the dataset. This reveals that we have age in months and years. I am going to remove one of these and use the pairs() function to create a a scatter plot matrix.\nThe select() function enables you to pull select a subset of variables in the dataset. Using the minus sign drops that variable - in this case, ageMonth.\nNow we can plot our pairwise scatter plot matrix. These are a little funky when you first see them, so take some time to learn this.\nTake a look at this matrix and you will see in the central diagonal cells the names of the variables that we have in our dataset. This diagonal acts as a sort of mirror for the visualisation. Since scatter plots are inherently pairwise visualisations, we interpret each “cell” in this matrix, each plot as a pairwise depiction of the variables on the diagonal.\nFor our purposes, let’s name the rows in this matrix 1-4 (top to bottom) and the columns A-D (left to right). In this plot cell 1A has the variable sex. Cell 1B Therefore has the scatter plot of ageyear (in cell B2) and sex (1A). Age is on the x axis while sex is on the y. Cell 2C, then, shows the scatter plot between age and height (the one we have been looking at so far). Finally, 3D shows the scatter plot of height and weight. Following this logic, then What is represented in cell 1C?\nSex is on the y axis and height in on the x axis. The left side of this matrix, “under” the diagonal, is just the reverse of what we have discussed with the axes flipped.\nIs this starting to make sense? Spend some time now to familiarise yourself with this and describe with a partner the apparent association between each of the pairs (don’t worry about the sex variable).\nFrom Winston Chang’s R Graphics Cookbook:\nSelect one or two and discuss their utility with a partner.",
     "crumbs": [
       "Unit 2: Visualising Data",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Scatter Plots</span>"
@@ -147,7 +147,7 @@
     "href": "Cleaning and Annotating.html",
     "title": "7  Cleaning and Annotating",
     "section": "",
-    "text": "8 Titles\nThere are three things you need to learn about titles. First, how to alter them using the labs() option. Second, how to change their presentation (size etc.). Third, the substantive utility of titles on graphs.\nBellow I demonstrate code using a moderated version of the hybrid cars dataset. I present two versions of the graph to demosntrate differences in substance. You may wish to have descriptive titles that describe what the chart shows. Or you may wish to have narrative-based titles that describe what the chart shows.\nDescriptive Title:\nggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Average Price by Car Class\", x = \"Car Class\", y = \"Average Cost\") +\n  theme_minimal() +\n  theme(plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12))\nNarrative Title:\nggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", x = \"Car Class\", y = \"Average Cost\") +\n  theme_minimal() +\n  theme(plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12))",
+    "text": "7.1 Titles\nThere are three things you need to learn about titles. First, how to alter them using the labs() option. Second, how to change their presentation (size etc.). Third, the substantive utility of titles on graphs.\nBellow I demonstrate code using a moderated version of the hybrid cars dataset. I present two versions of the graph to demosntrate differences in substance. You may wish to have descriptive titles that describe what the chart shows. Or you may wish to have narrative-based titles that describe what the chart shows.\nDescriptive Title:\nggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Average Price by Car Class\", x = \"Car Class\", y = \"Average Cost\") +\n  theme_minimal() +\n  theme(plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12))\nNarrative Title:\nggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", x = \"Car Class\", y = \"Average Cost\") +\n  theme_minimal() +\n  theme(plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12))",
     "crumbs": [
       "Unit 2: Visualising Data",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cleaning and Annotating</span>"
@@ -191,9 +191,9 @@
     "href": "index.html",
     "title": "DSA 202: Introduction to Data Visualisation",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
+    "text": "Welcome!\nWelcome to the course, Introduction to Data Visualisation! The aim of this coursebook is to serve as the one-stop-shop for the course by compiling all of the quarto documents that we will be using for the class into one place. This way, you can reference it at any time and keep it linked as you go beyond this course to serve as a reference to you in the future.\nThis coursebook provides a comprehensive (although not exhaustive!) introduction to data visualisation. By the end of this course you will:\n\nGrow proficiency writing basic syntax in R\nBuild knowledge of data types and structures\nDevelop skills in data management, visualization and analysis\nReport findings using reproducible script\n\nWe will be using RStudio in this course and all code will be written and worked in various R packages. There are many types of software like Tableau, Power BI, and other coding languages like Python that can be used to create data visualisations. Furthermore, there are so many types of visualisation that we could cover. However, we’ve only got one semester!\nFinally, we will be drawing from Winston Chang’s R Graphics Cookbook as a reference point for the course. We will also be using various packages, but mostly ggplot2. Run the code in the chunk below to ensure you have the package installed.\n\ninstall.packages(\"ggplot2\")\n\nEnjoy!",
     "crumbs": [
-      "Preface"
+      "Welcome!"
     ]
   },
   {
@@ -234,7 +234,7 @@
     "href": "Categorical Data.html#activities",
     "title": "3  Categorical Data",
     "section": "3.4 Activities",
-    "text": "3.4 Activities\n\n3.5 - Negative and Positive Values",
+    "text": "3.4 Activities\nFrom Winston Chang’s R Graphics Cookbook:\n\n3.5 - Negative and Positive Values",
     "crumbs": [
       "Unit 2: Visualising Data",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Categorical Data</span>"
@@ -293,6 +293,149 @@
     "crumbs": [
       "Unit 3: Alternative Data Types",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Networks</span>"
+    ]
+  },
+  {
+    "objectID": "Assignment 4.html",
+    "href": "Assignment 4.html",
+    "title": "15  Assignment 4",
+    "section": "",
+    "text": "15.1 Alternative Data Visualisation\nCONTENT COMING",
+    "crumbs": [
+      "Assignments",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Assignment 4</span>"
+    ]
+  },
+  {
+    "objectID": "Cleaning and Annotating.html#axes",
+    "href": "Cleaning and Annotating.html#axes",
+    "title": "7  Cleaning and Annotating",
+    "section": "7.2 Axes",
+    "text": "7.2 Axes\n\n7.2.1 Swapping Axes\nYou might consider swapping the axes of your chart. This means that the content on the X axis (generally considered the independent variable) is swapped with the Y axis. This is a little trick that can improve the readership of your plot. Consider a bar chart. The wider it gets the harder it is to really see what Y value the X category has at the far side. Looking at a char from right to left is a little less intuitive and, without a ruler, hard to see what is doing on. Meanwhile, top to bottom can be a little easier.\nLet’s repeat our last bar chart and flip it using the coord_flip() option of ggplot. See what you think.\n\nggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", x = \"Car Class\", y = \"Average Cost\") +\n  theme_minimal() +\n  theme(plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12)) +\n  coord_flip()\n\n\n\n\n\n\n\n\n\n\n7.2.2 Changing order of Bar Chart Items\nChanging the order of categories in a chart can be a good way to clearly visualise your data. Consider the bar chart above. If might look a little neater to change the orders.\nInside the aes() builder, use the reorder() option. You place x = reorder(x variable, y variable), which will arrange your X axis in ascending or descending order. Take a look at the following two chunks.\n\nggplot(class_costs, aes(x = reorder(class, -cost), y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", \n       x = \"Car Class\", \n       y = \"Average Cost\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12)) +\n  coord_flip()\n\n\n\n\n\n\n\n\n\nggplot(class_costs, aes(x = reorder(class, +cost), y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", \n       x = \"Car Class\", \n       y = \"Average Cost\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12)) +\n  coord_flip()\n\n\n\n\n\n\n\n\nYou can also change and customise the order you want.\n\nggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", \n       x = \"Car Class\", \n       y = \"Average Cost\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12)) +\n  coord_flip() +\n  scale_x_discrete(limits = c(\"TS\", \"MV\", \"M\", \"L\", \"SUV\", \"PT\", \"C\"))",
+    "crumbs": [
+      "Unit 2: Visualising Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cleaning and Annotating</span>"
+    ]
+  },
+  {
+    "objectID": "Cleaning and Annotating.html#annotations-on-graphs",
+    "href": "Cleaning and Annotating.html#annotations-on-graphs",
+    "title": "7  Cleaning and Annotating",
+    "section": "7.3 Annotations on Graphs",
+    "text": "7.3 Annotations on Graphs\nThere are many different annotations you may wish to include in your graph. The aims of annotations are to highlight elements of the graph or to clarify something about the graph. Many of this comes from Chapter 7 of Chang’s book.\nWhen creating a bar graph the code is slightly different. Since the x axis is categorical, the coordinates for your annotation need to reflect that. Instead of the number value of the annotation, you need to tell the ggplot which category you want the annotation over. Here, I place an arrow and some text onto the graph to demonstrate both the geom_text() and annotate() arguments.\n\nggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", x = \"Car Class\", y = \"Average Cost\") +\n  theme_minimal() +\n  theme(plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12)) +\n  geom_text(x = \"TS\", y = 70000, aes(label = \"Cheapest\")) +\n  annotate(\"segment\", x = \"TS\", xend = \"TS\", y = 60000, yend = 20000, arrow = arrow(angle = 45, length = unit(.2,\"cm\"))) \n\n\n\n\n\n\n\n\nThere are some other ways that you can highlight elements of your plot. For example, you could shade a specific area of your plot or add other annotations to highlight aspects of your visualisation.\n\ncosts_time &lt;- hybrid %&gt;%\n  group_by(year) %&gt;%\n  summarise(avg_cost = mean(msrp, na.rm = TRUE)) %&gt;%\n  ungroup()\n\n\nggplot(costs_time, aes(x = year, y = avg_cost)) +\n  geom_line(color = \"black\") +\n  annotate(\"rect\", xmin = 2005, xmax = 2007, ymin =27500, ymax = 47000, alpha = 0.1, fill = \"red\")",
+    "crumbs": [
+      "Unit 2: Visualising Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cleaning and Annotating</span>"
+    ]
+  },
+  {
+    "objectID": "Cleaning and Annotating.html#colours",
+    "href": "Cleaning and Annotating.html#colours",
+    "title": "7  Cleaning and Annotating",
+    "section": "7.4 Colours",
+    "text": "7.4 Colours\nColours are used to draw attention and highlight aspects of visualisations. You could change the fill of boxes, the lines or dots of a plot. Throughout the course so far you have seen example of this using various options of color or fill. Here, let’s discuss accessible colours best used for contrast in visualisations both in the theme of the plot and in the plot itself. In general, the higher contrast colours are best. In concert with that, however, is the fact that some colour pairs are less colour-blind friendly than others. For example, green and red is one of the most common forms of colour blindness yet we use it so much! Think traffic lights, general images with green meaning go and red stop.\nOne thing to consider is a dark/light contrast from background to foreground. You can use the theme options to do this. Look at the following examples and see what you think.\n\nggplot(costs_time, aes(x = year, y = avg_cost)) +\n  geom_line(color = \"white\") +\n  annotate(\"rect\", xmin = 2005, xmax = 2007, ymin =27500, ymax = 47000, alpha = 0.3, fill = \"red\") +\n  theme_dark()\n\n\n\n\n\n\n\n\n\nggplot(costs_time, aes(x = year, y = avg_cost)) +\n  geom_line(color = \"black\") +\n  annotate(\"rect\", xmin = 2005, xmax = 2007, ymin =27500, ymax = 47000, alpha = 0.1, fill = \"red\") +\n  theme_light()\n\n\n\n\n\n\n\n\n\nggplot(costs_time, aes(x = year, y = avg_cost)) +\n  geom_line(color = \"black\") +\n  annotate(\"rect\", xmin = 2005, xmax = 2007, ymin =27500, ymax = 47000, alpha = 0.1, fill = \"red\") +\n  theme_bw()",
+    "crumbs": [
+      "Unit 2: Visualising Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cleaning and Annotating</span>"
+    ]
+  },
+  {
+    "objectID": "Cleaning and Annotating.html#multiple-plots",
+    "href": "Cleaning and Annotating.html#multiple-plots",
+    "title": "7  Cleaning and Annotating",
+    "section": "7.5 Multiple Plots",
+    "text": "7.5 Multiple Plots\nYou might want to present multiple plots together. One option is to use the facet() option which is useful to split your plot out by various categories. Another option is to use the plot_grid() function from a package called cowplot. In order to use the plot_grid function, you first have to store your plots as objects. Follow the flow of code in the next chunk and see if you can determine each step.\n\n# Making the objects\np1 &lt;- ggplot(costs_time, aes(x = year, y = avg_cost)) +\n  geom_line() +\n  annotate(\"rect\", xmin = 2005, xmax = 2007, ymin =27500, ymax = 47000, alpha = 0.1, fill = \"red\")\n\np2 &lt;- ggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", \n       x = \"Car Class\", \n       y = \"Average Cost\") +\n  theme_minimal() +\n  theme(\n    plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12)) +\n  coord_flip() +\n  scale_x_discrete(limits = c(\"TS\", \"MV\", \"M\", \"L\", \"SUV\", \"PT\", \"C\"))\n\np3 &lt;- ggplot(class_costs, aes(x = class, y = cost)) +\n  geom_bar(stat = \"identity\", fill = \"steelblue\") +\n  labs(title = \"Luxury Hybrids are Most Expensive\", x = \"Car Class\", y = \"Average Cost\") +\n  theme_minimal() +\n  theme(plot.title = element_text(size = 18, face = \"bold\"),\n    axis.title.x = element_text(size = 14),\n    axis.title.y = element_text(size = 14),\n    axis.text = element_text(size = 12)) +\n  geom_text(x = \"TS\", y = 70000, aes(label = \"Cheapest\")) +\n  annotate(\"segment\", x = \"TS\", xend = \"TS\", y = 60000, yend = 20000, arrow = arrow(angle = 45, length = unit(.2,\"cm\"))) \n\nNow to create the plot_grid (which you can also make an object and even plot_grid from those!).\n\nplot_grid(p1, p2, p3, labels = c(\"A\", \"B\", \"C\"), ncol = 2)",
+    "crumbs": [
+      "Unit 2: Visualising Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cleaning and Annotating</span>"
+    ]
+  },
+  {
+    "objectID": "Cleaning and Annotating.html#activities",
+    "href": "Cleaning and Annotating.html#activities",
+    "title": "7  Cleaning and Annotating",
+    "section": "7.6 Activities",
+    "text": "7.6 Activities\nFrom Winston Chang’s R Graphics Cookbook:\n\n7.8 annotating individual facets\n8.2 Setting range of Axes\n8.5 Setting Ratio of X/Y axes\n8.6/8.9 tick labels\n9.1 More on titles\n9.2 Appearance of Text\nChapter 10 Legends\n12.3/4 Colorblind Friendly Palettes",
+    "crumbs": [
+      "Unit 2: Visualising Data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Cleaning and Annotating</span>"
+    ]
+  },
+  {
+    "objectID": "Accessibility and Ethics.html",
+    "href": "Accessibility and Ethics.html",
+    "title": "8  Accessibility and Ethics",
+    "section": "",
+    "text": "CONTENT COMING",
+    "crumbs": [
+      "Unit 2: Visualising Data",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Accessibility and Ethics</span>"
+    ]
+  },
+  {
+    "objectID": "Text.html",
+    "href": "Text.html",
+    "title": "10  Text",
+    "section": "",
+    "text": "CONTENT COMING",
+    "crumbs": [
+      "Unit 3: Alternative Data Types",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Text</span>"
+    ]
+  },
+  {
+    "objectID": "Sankey.html",
+    "href": "Sankey.html",
+    "title": "11  Sankey",
+    "section": "",
+    "text": "CONTENT COMING",
+    "crumbs": [
+      "Unit 3: Alternative Data Types",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Sankey</span>"
+    ]
+  },
+  {
+    "objectID": "Assignment 1.html",
+    "href": "Assignment 1.html",
+    "title": "12  Assignment 1",
+    "section": "",
+    "text": "12.1 Project Prospectus\nCONTENT COMING",
+    "crumbs": [
+      "Assignments",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Assignment 1</span>"
+    ]
+  },
+  {
+    "objectID": "Assignment 2.html",
+    "href": "Assignment 2.html",
+    "title": "13  Assignment 2",
+    "section": "",
+    "text": "13.1 Data Selection and Summary\nCONTENT COMING",
+    "crumbs": [
+      "Assignments",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
+    "objectID": "Assignment 3.html",
+    "href": "Assignment 3.html",
+    "title": "14  Assignment 3",
+    "section": "",
+    "text": "14.1 Visualisation Basics\nCONTENT COMING",
+    "crumbs": [
+      "Assignments",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Assignment 3</span>"
+    ]
+  },
+  {
+    "objectID": "Final Project.html",
+    "href": "Final Project.html",
+    "title": "16  Final Project",
+    "section": "",
+    "text": "CONTENT COMING",
+    "crumbs": [
+      "Assignments",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Final Project</span>"
     ]
   }
 ]

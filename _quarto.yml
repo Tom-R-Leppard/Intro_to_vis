@@ -34,10 +34,10 @@ book:
       - Sankey.qmd
     - part: "Assignments"
       chapters:
-      - Assignment 1
-      - Assignment 2
-      - Assignment 3
-      - Assignment 4
+      - Assignment 1.qmd
+      - Assignment 2.qmd
+      - Assignment 3.qmd
+      - Assignment 4.qmd
       - Final Project.qmd
       
 
