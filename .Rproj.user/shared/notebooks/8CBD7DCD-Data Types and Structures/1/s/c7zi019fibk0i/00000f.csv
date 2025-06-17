@@ -1,0 +1,8 @@
+"0","class(hyb$id) # identify the class of data using class()"
+"1","[1] ""integer""
+"
+"0","hyb$id_chr <- as.character(hyb$id) # change a variable to a character create a new variable with that. "
+"0",""
+"0","class(hyb$id_chr)"
+"1","[1] ""character""
+"

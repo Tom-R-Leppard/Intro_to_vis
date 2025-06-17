@@ -1,0 +1,8 @@
+"0","class_counts <- hybrid %>%"
+"0","  count(class)"
+"0",""
+"0","ggplot(class_counts, aes(x = """", y = n, fill = class)) +"
+"0","  geom_col(color = ""black"") +"
+"0","  geom_text(aes(label = n), position = position_stack(vjust = 0.5)) +"
+"0","  coord_polar(theta = ""y"") +"
+"0","  theme_void()"

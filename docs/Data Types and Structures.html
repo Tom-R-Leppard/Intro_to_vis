@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Data Types and Structures – DSA 202: Introduction to Data Visualisation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Summarising Data.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-4395d621a69062e58abce9f29c6c1b99.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Data Types and Structures.html">Unit 1: Working with Data</a></li><li class="breadcrumb-item"><a href="./Data Types and Structures.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Types and Structures</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./cover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 1: Working with Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data Types and Structures.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Types and Structures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Summarising Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summarising Data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 2: Visualising Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Categorical Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Categorical Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Line Graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Scatterplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Scatter Plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Beyond Static Visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Beyond Static Visualisation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Cleaning and Annotating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Cleaning and Annotating</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Accessibility and Ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Accessibility and Ethics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 3: Alternative Data Types</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Networks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Text</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sankey.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sankey</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-in-r" id="toc-data-in-r" class="nav-link active" data-scroll-target="#data-in-r"><span class="header-section-number">1.1</span> Data in R</a></li>
+  <li><a href="#levels-of-data" id="toc-levels-of-data" class="nav-link" data-scroll-target="#levels-of-data"><span class="header-section-number">1.2</span> Levels of Data</a>
+  <ul class="collapse">
+  <li><a href="#activity---levels-of-data" id="toc-activity---levels-of-data" class="nav-link" data-scroll-target="#activity---levels-of-data"><span class="header-section-number">1.2.1</span> Activity - Levels of Data</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Data Types and Structures.html">Unit 1: Working with Data</a></li><li class="breadcrumb-item"><a href="./Data Types and Structures.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Types and Structures</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Types and Structures</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="data-in-r" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="data-in-r"><span class="header-section-number">1.1</span> Data in R</h2>
+<p>In R, you can work with many different types of data including but not limited to data frames, lists, vectors, and matrices. For the purposes of our course, we are going to be working mostly with data frames. A data frame is a tabular data structure with observations in the rows and variables in the columns. Each of these variables might be stored within the data frame as different levels of data. There are a few tricks in R to identify and change the level of data.</p>
+<p>Follow each chunk to examine the a data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hyb <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.choose</span>()) <span class="co"># choose hybrid.csv}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>First, you can take a look at the data set using a few different functions. Follow the logic in the next chunk to inspect the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hyb <span class="co"># call the object you created to see the whole data set.  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     id                        model year      msrp msrp_dollars accel_rate
+1     1             Prius (1st gen.) 1997  24509.74  $24,509.74        7.46
+2     2                  Tino Hybrid 2000  35354.97  $35,354.97        8.20
+3     3             Prius (2nd gen.) 2000  26832.25  $26,832.25        7.97
+4     4                      Insight 2000  18936.41  $18,936.41        9.52
+5     5        Civic Hybrid 1st gen. 2001  25833.38  $25,833.38        7.04
+6     6                      Insight 2001  19036.71  $19,036.71        9.52
+7     7                      Insight 2002  19137.01  $19,137.01        9.71
+8     8               Alphard Hybrid 2003  38084.77  $38,084.77        8.33
+9     9                      Insight 2003  19137.01  $19,137.01        9.52
+10   10                 Civic Hybrid 2003  14071.92  $14,071.92        8.62
+11   11                Escape Hybrid 2004  36676.10  $36,676.10       10.32
+12   12                      Insight 2004  19237.31  $19,237.31        9.35
+13   13                        Prius 2004  20355.64  $20,355.64        9.90
+14   14      Silverado 15 Hybrid 2WD 2004  30089.64  $30,089.64        9.09
+15   15                 Lexus RX400h 2005  58521.14  $58,521.14       12.76
+16   16        Civic Hybrid 2nd gen. 2005  26354.44  $26,354.44        7.63
+17   17            Highlander Hybrid 2005  29186.21  $29,186.21       12.76
+18   18                      Insight 2005  19387.76  $19,387.76        9.71
+19   19                 Civic Hybrid 2005  18236.33  $18,236.33        8.26
+20   20            Escape Hybrid 2WD 2005  19322.56  $19,322.56        9.52
+21   21                Accord Hybrid 2005  16343.69  $16,343.69       14.93
+22   22      Silverado 15 Hybrid 2WD 2005  32647.26  $32,647.26       11.11
+23   23       Mercury Mariner Hybrid 2006  34772.40  $34,772.40        8.98
+24   24                 Camry Hybrid 2006  29853.25  $29,853.25       11.28
+25   25                 Lexus GS450h 2006  64547.56  $64,547.56       18.65
+26   26                Estima Hybrid 2006  36012.70  $36,012.70        9.26
+27   27                Altima Hybrid 2006  29524.75  $29,524.75       13.29
+28   28       Chevrolet Tahoe Hybrid 2007  42924.35  $42,924.35       10.91
+29   29                Kluger Hybrid 2007  46229.48  $46,229.48       12.76
+30   30              Lexus LS600h/hL 2007 118543.60 $118,543.60       17.54
+31   31               Tribute Hybrid 2007  24823.83  $24,823.83       11.28
+32   32             GMC Yukon Hybrid 2007  57094.81  $57,094.81       12.28
+33   33                  Aura Hybrid 2007  22110.87  $22,110.87       10.87
+34   34                   Vue Hybrid 2007  22938.33  $22,938.33       10.75
+35   35      Silverado 15 Hybrid 2WD 2007  34653.23  $34,653.23       11.49
+36   36                 Crown Hybrid 2008  62290.38  $62,290.38        8.70
+37   37     Cadillac Escalade Hybrid 2008  78932.81  $78,932.81        9.09
+38   38                         F3DM 2008  23744.06  $23,744.06        9.52
+39   39                Altima Hybrid 2008  18675.63  $18,675.63       13.70
+40   40                       A5 BSG 2009  11849.43  $11,849.43        7.87
+41   41                 Lexus RX450h 2009  46233.36  $46,233.36       13.47
+42   42                ML450 Blue HV 2009  60519.83  $60,519.83       12.60
+43   43             Prius (3rd gen.) 2009  24641.18  $24,641.18        9.60
+44   44      S400 Hybrid/Hybrid Long 2009  96208.93  $96,208.93       13.89
+45   45         Mercury Milan Hybrid 2009  30522.57  $30,522.57       11.55
+46   46                 Lexus HS250h 2009  38478.15  $38,478.15       11.55
+47   47           Avante/Elantra LPI 2009  21872.71  $21,872.71       10.21
+48   48              ActiveHybrid X6 2009  97237.90  $97,237.90       17.96
+49   49                          SAI 2009  39172.44  $39,172.44       11.55
+50   50                Malibu Hybrid 2009  24768.79  $24,768.79        9.09
+51   51                   Vue Hybrid 2009  26408.67  $26,408.67       13.70
+52   52                    Aspen HEV 2009  44903.77  $44,903.77       13.51
+53   53                      Durango 2009  41033.24  $41,033.24        8.33
+54   54                    Auris HSD 2010  35787.29  $35,787.29        8.85
+55   55                         CR-Z 2010  21435.54  $21,435.54        9.24
+56   56                    F3DM PHEV 2010  23124.59  $23,124.59        9.24
+57   57                   Touareg HV 2010  64198.95  $64,198.95       15.38
+58   58                      Audi Q5 2010  37510.86  $37,510.86       14.08
+59   59              Jeep Patriot EV 2010  17045.06  $17,045.06       12.05
+60   60                  Besturn B50 2010  14586.61  $14,586.61        7.14
+61   61        ActiveHybrid 7 Series 2010 104300.43 $104,300.43       20.41
+62   62           Lincoln MKZ Hybrid 2010  37036.64  $37,036.64       11.15
+63   63              Fit/Jazz Hybrid 2010  16911.85  $16,911.85        8.26
+64   64                    Sonata HV 2010  28287.66  $28,287.66       14.70
+65   65                 Cayenne S HV 2010  73183.47  $73,183.47       14.71
+66   66                      Insight 2010  19859.16  $19,859.16        9.17
+67   67    Fuga Hybrid/Infiniti M35h 2010  70157.02  $70,157.02       18.65
+68   68               Chevrolet Volt 2010  42924.35  $42,924.35       10.78
+69   69           Tribute Hybrid 4WD 2010  27968.32  $27,968.32       12.35
+70   70            Fusion Hybrid FWD 2010  28033.51  $28,033.51       11.49
+71   71                      HS 250h 2010  34753.53  $34,753.53       11.76
+72   72           Mariner Hybrid FWD 2010  30194.95  $30,194.95       11.63
+73   73                      RX 450h 2010  42812.54  $42,812.54       13.89
+74   74          ML450 Hybrid 4natic 2010  55164.33  $55,164.33       12.99
+75   75      Silverado 15 Hybrid 2WD 2010  38454.56  $38,454.56       11.76
+76   76                  S400 Hybrid 2010  88212.78  $88,212.78       12.99
+77   77                         Aqua 2011  22850.87  $22,850.87        9.35
+78   78                 Lexus CT200h 2011  30082.16  $30,082.16        9.71
+79   79         Civic Hybrid 3rd gen 2011  24999.59  $24,999.59        9.60
+80   80              Prius alpha (V) 2011  30588.35  $30,588.35       10.00
+81   81                 3008 Hybrid4 2011  45101.54  $45,101.54       11.36
+82   82           Fit Shuttle Hybrid 2011  16394.36  $16,394.36        7.52
+83   83          Buick Regal eAssist 2011  27948.93  $27,948.93       12.05
+84   84                      Prius V 2011  27272.28  $27,272.28        9.51
+85   85     Freed/Freed Spike Hybrid 2011  27972.07  $27,972.07        6.29
+86   86                 Optima K5 HV 2011  26549.16  $26,549.16       10.54
+87   87            Escape Hybrid FWD 2011  30661.34  $30,661.34       12.35
+88   88                      Insight 2011  18254.38  $18,254.38        9.52
+89   89               MKZ Hybrid FWD 2011  34748.52  $34,748.52       11.49
+90   90                         CR-Z 2011  19402.80  $19,402.80       12.20
+91   91                Sonata Hybrid 2011  25872.07  $25,872.07       11.90
+92   92                 Camry Hybrid 2011  27130.82  $27,130.82       13.89
+93   93           Tribute Hybrid 2WD 2011  26213.09  $26,213.09       12.50
+94   94             Cayenne S Hybrid 2011  67902.28  $67,902.28       18.52
+95   95               Touareg Hybrid 2011  50149.39  $50,149.39       16.13
+96   96              ActiveHybrid 7i 2011 102605.66 $102,605.66       18.18
+97   97                      Prius C 2012  19006.62  $19,006.62        9.35
+98   98                    Prius PHV 2012  32095.61  $32,095.61        8.82
+99   99                       Ampera 2012  31739.55  $31,739.55       11.11
+100 100        ActiveHybrid 5 Series 2012  62180.23  $62,180.23       16.67
+101 101                 Lexus GS450h 2012  59126.14  $59,126.14       16.95
+102 102                      Insight 2012  18555.28  $18,555.28        9.42
+103 103               Chevrolet Volt 2012  39261.96  $39,261.96       11.11
+104 104              Camry Hybrid LE 2012  26067.66  $26,067.66       13.16
+105 105               MKZ Hybrid FWD 2012  34858.84  $34,858.84       11.49
+106 106                         M35h 2012  53860.45  $53,860.45       19.23
+107 107             LaCrosse eAssist 2012  30049.52  $30,049.52       11.36
+108 108        ActiveHybrid 5 Series 2012  61132.11  $61,132.11       17.54
+109 109            Panamera S Hybrid 2012  95283.85  $95,283.85       17.54
+110 110        Yukon 1500 Hybrid 2WD 2012  52626.77  $52,626.77       13.50
+111 111                      Prius C 2013  19080.00  $19,080.00        8.70
+112 112                 Jetta Hybrid 2013  24995.00  $24,995.00       12.66
+113 113                 Civic Hybrid 2013  24360.00  $24,360.00       10.20
+114 114                        Prius 2013  24200.00  $24,200.00       10.20
+115 115            Fusion Hybrid FWD 2013  27200.00  $27,200.00       11.72
+116 116             C-Max Hybrid FWD 2013  25200.00  $25,200.00       12.35
+117 117                      Insight 2013  18600.00  $18,600.00       11.76
+118 118              Camry Hybrid LE 2013  26140.00  $26,140.00       13.51
+119 119            Camry Hybrid LXLE 2013  27670.00  $27,670.00       13.33
+120 120                Sonata Hybrid 2013  25650.00  $25,650.00       11.76
+121 121                Optima Hybrid 2013  25900.00  $25,900.00       11.63
+122 122        Sonata Hybrid Limited 2013  30550.00  $30,550.00       11.76
+123 123             Optima Hybrid EX 2013  31950.00  $31,950.00       11.36
+124 124               Malibu eAssist 2013  24985.00  $24,985.00       11.49
+125 125             LaCrosse eAssist 2013  31660.00  $31,660.00       11.36
+126 126                Regal eAssist 2013  29015.00  $29,015.00       12.20
+127 127                      RX 450h 2013  46310.00  $46,310.00       12.99
+128 128        Highlander Hybrid 4WD 2013  40170.00  $40,170.00       13.89
+129 129                    Q5 Hybrid 2013  50900.00  $50,900.00       14.71
+130 130             Cayenne S Hybrid 2013  69850.00  $69,850.00       16.39
+131 131               Touareg Hybrid 2013  62575.00  $62,575.00       16.13
+132 132          Escalade Hybrid 2WD 2013  74425.00  $74,425.00       11.63
+133 133             Tahoe Hybrid 2WD 2013  53620.00  $53,620.00       11.90
+134 134        Yukon 1500 Hybrid 2WD 2013  54145.00  $54,145.00       11.88
+135 135        Yukon 1500 Hybrid 4WD 2013  61960.00  $61,960.00       13.33
+136 136                         CR-Z 2013  19975.00  $19,975.00       11.11
+137 137               MKZ Hybrid FWD 2013  35925.00  $35,925.00       14.03
+138 138                      CT 200h 2013  32050.00  $32,050.00       10.31
+139 139                      ES 300h 2013  39250.00  $39,250.00       12.35
+140 140                   ILX Hybrid 2013  28900.00  $28,900.00        9.26
+141 141               ActiveHybrid 3 2013  49650.00  $49,650.00       14.93
+142 142      Silverado 15 Hybrid 2WD 2013  41135.00  $41,135.00       12.35
+143 143         Sierra 15 Hybrid 2WD 2013  41555.00  $41,555.00       10.00
+144 144                      GS 450h 2013  59450.00  $59,450.00       16.67
+145 145                         M35h 2013  54750.00  $54,750.00       19.61
+146 146                  E400 Hybrid 2013  55800.00  $55,800.00       14.93
+147 147        ActiveHybrid 5 Series 2013  61400.00  $61,400.00       12.99
+148 148              ActiveHybrid 7L 2013  84300.00  $84,300.00       18.18
+149 149            Panamera S Hybrid 2013  96150.00  $96,150.00       18.52
+150 150                  S400 Hybrid 2013  92350.00  $92,350.00       13.89
+151 151         Prius Plug-in Hybrid 2013  32000.00  $32,000.00        9.17
+152 152  C-Max Energi Plug-in Hybrid 2013  32950.00  $32,950.00       11.76
+153 153 Fusion Energi Plug-in Hybrid 2013  38700.00  $38,700.00       11.76
+154 154               Chevrolet Volt 2013  39145.00  $39,145.00       11.11
+      mpg mpg_mpge class
+1   41.26    41.26     C
+2   54.10    54.10     C
+3   45.23    45.23     C
+4   53.00    53.00    TS
+5   47.04    47.04     C
+6   53.00    53.00    TS
+7   53.00    53.00    TS
+8   40.46    40.46    MV
+9   53.00    53.00    TS
+10  41.00    41.00     C
+11  31.99    31.99   SUV
+12  52.00    52.00    TS
+13  46.00    46.00     M
+14  17.00    17.00    PT
+15  28.23    28.23   SUV
+16  39.99    39.99     C
+17  29.40    29.40   SUV
+18  52.00    52.00    TS
+19  41.00    41.00     C
+20  29.00    29.00   SUV
+21  28.00    28.00     M
+22  17.00    17.00    PT
+23  32.93    32.93   SUV
+24  33.64    33.64     M
+25  33.40    33.40     M
+26  47.04    47.04    MV
+27  32.93    32.93     M
+28  22.35    22.35   SUV
+29  25.87    25.87   SUV
+30  21.00    21.00     M
+31  31.75    31.75   SUV
+32  21.78    21.78   SUV
+33  27.00    27.00     M
+34  26.00    26.00   SUV
+35  17.00    17.00    PT
+36  37.16    37.16     M
+37  22.35    22.35   SUV
+38  30.11    85.00     M
+39  34.00    34.00     M
+40  35.28    35.28     M
+41  31.99    31.99   SUV
+42  23.99    23.99   SUV
+43  47.98    47.98     C
+44  26.34    26.34     L
+45  40.69    40.69     M
+46  54.10    54.10     C
+47  41.87    41.87     C
+48  18.82    18.82   SUV
+49  54.10    54.10     M
+50  29.00    29.00     M
+51  28.00    28.00   SUV
+52  21.00    21.00   SUV
+53  21.00    21.00   SUV
+54  68.21    68.21     C
+55  37.00    37.00    TS
+56  30.15    85.00     M
+57  28.70    28.70   SUV
+58  33.64    33.64   SUV
+59  29.40    38.00   SUV
+60  31.28    31.28     M
+61  22.11    22.11     L
+62  37.63    37.63     M
+63  30.00    30.00     C
+64  37.00    37.00     M
+65  26.11    26.11   SUV
+66  41.00    41.00     C
+67  33.64    33.64     M
+68  35.00    93.00     C
+69  29.00    29.00   SUV
+70  39.00    39.00     M
+71  35.00    35.00     C
+72  32.00    32.00   SUV
+73  30.00    30.00   SUV
+74  22.00    22.00   SUV
+75  22.00    22.00    PT
+76  21.00    21.00     L
+77  50.00    50.00     C
+78  42.00    42.00     C
+79  44.36    44.36     C
+80  72.92    72.92     M
+81  61.16    61.16     C
+82  58.80    58.80    MV
+83  25.99    25.99     M
+84  32.93    32.93     M
+85  50.81    50.81    MV
+86  36.00    36.00     M
+87  32.00    32.00   SUV
+88  41.00    41.00     C
+89  39.00    39.00     M
+90  37.00    37.00    TS
+91  36.00    36.00     M
+92  33.00    33.00     M
+93  32.00    32.00   SUV
+94  21.00    21.00   SUV
+95  21.00    21.00   SUV
+96  20.00    20.00     M
+97  50.00    50.00     C
+98  50.00    95.00     M
+99  37.00    98.00     C
+100 26.00    26.00     M
+101 31.00    31.00     M
+102 42.00    42.00     C
+103 37.00    94.00     C
+104 41.00    41.00     M
+105 39.00    39.00     M
+106 29.00    29.00     M
+107 29.00    29.00     M
+108 26.00    26.00     M
+109 25.00    25.00     L
+110 21.00    21.00   SUV
+111 50.00    50.00     C
+112 45.00    45.00     C
+113 44.00    44.00     C
+114 50.00    50.00     M
+115 47.00    47.00     M
+116 43.00    43.00     L
+117 42.00    42.00     C
+118 41.00    41.00     M
+119 40.00    40.00     M
+120 38.00    38.00     M
+121 38.00    38.00     M
+122 37.00    37.00     M
+123 37.00    37.00     M
+124 29.00    29.00     M
+125 29.00    29.00     M
+126 29.00    29.00     M
+127 30.00    30.00   SUV
+128 28.00    28.00   SUV
+129 26.00    26.00   SUV
+130 21.00    21.00   SUV
+131 21.00    21.00   SUV
+132 21.00    21.00   SUV
+133 21.00    21.00   SUV
+134 21.00    21.00   SUV
+135 21.00    21.00   SUV
+136 37.00    37.00    TS
+137 45.00    45.00     M
+138 42.00    42.00     C
+139 40.00    40.00     M
+140 38.00    38.00     C
+141 28.00    28.00     C
+142 21.00    21.00    PT
+143 21.00    21.00    PT
+144 31.00    31.00     M
+145 29.00    29.00     M
+146 26.00    26.00     M
+147 26.00    26.00     M
+148 25.00    25.00     L
+149 25.00    25.00     L
+150 21.00    21.00     L
+151 50.00    95.00     M
+152 43.00   100.00     M
+153 43.00   100.00     M
+154 37.00    98.00     C</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hyb, <span class="dv">5</span>) <span class="co"># Take a look at the first 5 observations in the set (you can set the number) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id                 model year     msrp msrp_dollars accel_rate   mpg mpg_mpge
+1  1      Prius (1st gen.) 1997 24509.74  $24,509.74        7.46 41.26    41.26
+2  2           Tino Hybrid 2000 35354.97  $35,354.97        8.20 54.10    54.10
+3  3      Prius (2nd gen.) 2000 26832.25  $26,832.25        7.97 45.23    45.23
+4  4               Insight 2000 18936.41  $18,936.41        9.52 53.00    53.00
+5  5 Civic Hybrid 1st gen. 2001 25833.38  $25,833.38        7.04 47.04    47.04
+  class
+1     C
+2     C
+3     C
+4    TS
+5     C</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(hyb, <span class="dv">10</span>) <span class="co"># Look at the last 10 observations (you can set the number)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     id                        model year  msrp msrp_dollars accel_rate mpg
+145 145                         M35h 2013 54750  $54,750.00       19.61  29
+146 146                  E400 Hybrid 2013 55800  $55,800.00       14.93  26
+147 147        ActiveHybrid 5 Series 2013 61400  $61,400.00       12.99  26
+148 148              ActiveHybrid 7L 2013 84300  $84,300.00       18.18  25
+149 149            Panamera S Hybrid 2013 96150  $96,150.00       18.52  25
+150 150                  S400 Hybrid 2013 92350  $92,350.00       13.89  21
+151 151         Prius Plug-in Hybrid 2013 32000  $32,000.00        9.17  50
+152 152  C-Max Energi Plug-in Hybrid 2013 32950  $32,950.00       11.76  43
+153 153 Fusion Energi Plug-in Hybrid 2013 38700  $38,700.00       11.76  43
+154 154               Chevrolet Volt 2013 39145  $39,145.00       11.11  37
+    mpg_mpge class
+145       29     M
+146       26     M
+147       26     M
+148       25     L
+149       25     L
+150       21     L
+151       95     M
+152      100     M
+153      100     M
+154       98     C</code></pre>
+</div>
+</div>
+<p>So, we have quite a few numeric and categorical variables here. We need to know how each of these variables are stored in this data set so we know how to work with them. The following chunk uses the str() function to take a look at how this data set is structured.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(hyb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   154 obs. of  9 variables:
+ $ id          : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ model       : chr  "Prius (1st gen.)" "Tino Hybrid" "Prius (2nd gen.)" "Insight" ...
+ $ year        : int  1997 2000 2000 2000 2001 2001 2002 2003 2003 2003 ...
+ $ msrp        : num  24510 35355 26832 18936 25833 ...
+ $ msrp_dollars: chr  "$24,509.74 " "$35,354.97 " "$26,832.25 " "$18,936.41 " ...
+ $ accel_rate  : num  7.46 8.2 7.97 9.52 7.04 9.52 9.71 8.33 9.52 8.62 ...
+ $ mpg         : num  41.3 54.1 45.2 53 47 ...
+ $ mpg_mpge    : num  41.3 54.1 45.2 53 47 ...
+ $ class       : chr  "C" "C" "C" "TS" ...</code></pre>
+</div>
+</div>
+<p>Starting from the top right, we have a data.frame (a type of data structure) that has 154 observations (the rows) with 9 variables (columns). under this line is an explanation of each of the 9 variables. From left to right, we have the name of the variable, the type, then a short example of the data stored therein. For example, we have an ‘id variable’ stored as an integer (int) which. The “model” variable is stored as a character (chr) variable which indicates that it is stored as text (also known as a string). There is one more variable class you should know which is factor. While characters are text, factors are categories with a set number of possible values.</p>
+<p>Notice the $? The $ is an operator used in R to access different elements in an object. This comes in handy when we want to work with the data and transform it. For example, we may wish to view certain elements of this data frame. Follow the logic in the following chunk.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(hyb<span class="sc">$</span>id) <span class="co"># identify the class of data using class()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hyb<span class="sc">$</span>id_chr <span class="ot">&lt;-</span> <span class="fu">as.character</span>(hyb<span class="sc">$</span>id) <span class="co"># change a variable to a character create a new variable with that. </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(hyb<span class="sc">$</span>id_chr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<p>One final thing to note when working with character data is that often you need to convert characters into factors so that R recognises the long list of text as being truly categorical. This actually encodes each unique character as a distinct category recognising all with the same text as sharing a category.</p>
+<p>For example, the variable ‘class’ is actually categorical. What type of car it is. It is, however, stored as a character. In order to do anything with this variables (say visualising average cost by each category?), we need to convert this into a factor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hyb<span class="sc">$</span>class <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(hyb<span class="sc">$</span>class)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(hyb<span class="sc">$</span>class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+</div>
+<p>Keep this trick in your pocket! You are likely going to need this throughout the semester!</p>
+</section>
+<section id="levels-of-data" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="levels-of-data"><span class="header-section-number">1.2</span> Levels of Data</h2>
+<p>Within a data set you will encounter different variables that are measures at various levels and using different units of measurement. Let’s say, for example, you have some survey data that asks questions about the respondent’s biological sex, income, and how satisfied they are are work. All of these questions are useful, and can be useful in visualisation. However, there are some visualisations that are more appropriate and useful for some of these more than others. In order to properly visualise data, we need to understand data.</p>
+<p>There are two main ‘umbrella’ terms that you can use when talking about data. These are, <strong>categorical</strong> and <strong>numeric</strong>. Categorical data, as the name suggests, are measured in buckets or categories while numeric data use units and numbers. There are a few further distinctions you need to understand before these become useful to you.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Categorical Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Nominal: These are data with distinct labels that have no quantitative difference between one another.</p>
+<p>E.g. Sex (Male, Female). Race (White, Black, Other).</p></td>
+</tr>
+<tr class="even">
+<td><p>Ordinal: These are data with set differences between each response. These are categorical responses that are ranked in a specific order.</p>
+<p>E.g. Likert Scale (Agree, Neutral, Disagree).</p></td>
+</tr>
+</tbody>
+</table>
+<p>There are some other variations of categorical data that are sometimes referred to such as dummy variables (true or false, or 0/1). So, an honorable mention goes to dummy variables!!</p>
+<p>Categorical data will almost always be stored as characters or factors. Alternatively, you might come across encoded versions of categorical data. For example, male and female may be given a numeric code but, we know this to be categorical. So, you must decide what to do. You may want to convert this to a categorical variable, or simply remember what 1 and 0 mean.</p>
+<p>Since there are distinct buckets of information that are stored in categorical data, it is best presented using tables, bar charts or pie charts.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 101%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Numeric Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Interval: Continuous data that do not have a zero point.</p>
+<p>E.g. Temperature (measured in Farenheit), Time (measured on a 12-hour clock, ACT scores).</p></td>
+</tr>
+<tr class="even">
+<td><p>Ratio: Continuous data that have a true zero point.</p>
+<p>E.g. Earnings (dollar amount), Age (measured in years).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Numeric data all have equal intervals (i.e.&nbsp;one decimal place, or one year, or one degree) which creates a continuous stream of data.</p>
+<p>In R, numeric data is stored as integer (int) or numeric (num). You may come across data that should be numeric but is stored as categorical or perhaps a character.</p>
+<section id="activity---levels-of-data" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="activity---levels-of-data"><span class="header-section-number">1.2.1</span> Activity - Levels of Data</h3>
+<p>Look at the following examples of questions and, with a partner, decide whether the unit of measurement is nominal, ordinal, interval or ratio.</p>
+<ol type="1">
+<li>Please indicate how much you earn a year from your current job: - $0 - $24,999</li>
+</ol>
+<pre><code>-   $25,000 - $49,999
+
+-   $50,000 - $74,999
+
+-   $75,000 - $99,999
+
+-   $100,000+</code></pre>
+<ol start="2" type="1">
+<li><p>How much do you earn at your current job (in USD): _____________</p></li>
+<li><p>How likely are you to recommend this product?:</p>
+<ol type="1">
+<li>Likely</li>
+<li>Neutral</li>
+<li>Unlikely</li>
+</ol></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Summarising Data.html" class="pagination-link" aria-label="Summarising Data">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summarising Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

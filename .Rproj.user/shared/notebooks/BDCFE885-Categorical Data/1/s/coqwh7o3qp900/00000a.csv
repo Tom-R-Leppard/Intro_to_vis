@@ -1,0 +1,3 @@
+"0","ggplot(hybrid, aes(x = class, fill = mpg_tier)) +"
+"0","  geom_bar(color = ""black"") + "
+"0","  coord_flip()"

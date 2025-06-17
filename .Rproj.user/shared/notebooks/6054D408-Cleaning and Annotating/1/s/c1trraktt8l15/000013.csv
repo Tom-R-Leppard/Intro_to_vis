@@ -1,0 +1,3 @@
+"0","ggplot(costs_time, aes(x = year, y = avg_cost)) +"
+"0","  geom_line(color = ""black"") +"
+"0","  annotate(""rect"", xmin = 2005, xmax = 2007, ymin =27500, ymax = 47000, alpha = 0.1, fill = ""red"")"

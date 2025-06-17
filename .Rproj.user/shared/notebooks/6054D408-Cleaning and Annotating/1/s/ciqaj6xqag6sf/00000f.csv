@@ -1,0 +1,4 @@
+"0","class_costs <- hybrid %>%"
+"0","  group_by(class) %>%"
+"0","  summarise(cost = mean(msrp, na.rm = TRUE)) %>%"
+"0","  ungroup()"

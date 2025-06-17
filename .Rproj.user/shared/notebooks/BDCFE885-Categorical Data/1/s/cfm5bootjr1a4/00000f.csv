@@ -1,0 +1,6 @@
+"0","hybrid <- hybrid %>%"
+"0","  mutate(mpg_tier = case_when("
+"0","    mpg < 20 ~ ""Low (<20)"","
+"0","    mpg >= 20 & mpg <= 30 ~ ""Medium (20–30)"","
+"0","    mpg > 30 ~ ""High (>30)"""
+"0","  ))"

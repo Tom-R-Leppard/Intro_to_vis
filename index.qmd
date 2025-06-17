@@ -1,0 +1,23 @@
+# Welcome! {.unnumbered}
+
+Welcome to the course, Introduction to Data Visualisation! The aim of this coursebook is to serve as the one-stop-shop for the course by compiling all of the quarto documents that we will be using for the class into one place. This way, you can reference it at any time and keep it linked as you go beyond this course to serve as a reference to you in the future.
+
+This coursebook provides a comprehensive (although not exhaustive!) introduction to data visualisation. By the end of this course you will:
+
+1.  Grow proficiency writing basic syntax in R
+
+2.  Build knowledge of data types and structures
+
+3.  Develop skills in data management, visualization and analysis
+
+4.  Report findings using reproducible script
+
+We will be using RStudio in this course and all code will be written and worked in various R packages. There are many types of software like Tableau, Power BI, and other coding languages like Python that can be used to create data visualisations. Furthermore, there are so many types of visualisation that we could cover. However, we've only got one semester!
+
+Finally, we will be drawing from Winston Chang's [R Graphics Cookbook](https://r-graphics.org/) as a reference point for the course. We will also be using various packages, but mostly ggplot2. Run the code in the chunk below to ensure you have the package installed.
+
+```{r eval = FALSE}
+install.packages("ggplot2")
+```
+
+Enjoy!

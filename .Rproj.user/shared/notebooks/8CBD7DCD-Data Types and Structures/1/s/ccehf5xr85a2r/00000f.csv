@@ -1,0 +1,5 @@
+"0","hyb$class <- as.factor(hyb$class)"
+"0",""
+"0","class(hyb$class)"
+"1","[1] ""factor""
+"

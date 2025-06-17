@@ -1,0 +1,4 @@
+"0","costs_time <- hybrid %>%"
+"0","  group_by(year) %>%"
+"0","  summarise(avg_cost = mean(msrp, na.rm = TRUE)) %>%"
+"0","  ungroup()"

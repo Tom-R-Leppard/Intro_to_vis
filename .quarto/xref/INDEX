@@ -1,0 +1,38 @@
+{
+  "Summarising Data.qmd": {
+    "Summarising Data.html": "b02bf1cb"
+  },
+  "index.qmd": {
+    "index.html": "09356bb1"
+  },
+  "Data Types and Structures.qmd": {
+    "Data Types and Structures.html": "515c76af"
+  },
+  "Categorical Data.qmd": {
+    "Categorical Data.html": "59f48093"
+  },
+  "Line Graphs.qmd": {
+    "Line Graphs.html": "de9d4256"
+  },
+  "Scatterplots.qmd": {
+    "Scatterplots.html": "3becbf3f"
+  },
+  "Beyond Static Visualisation.qmd": {
+    "Beyond Static Visualisation.html": "86611d51"
+  },
+  "Cleaning and Annotating.qmd": {
+    "Cleaning and Annotating.html": "bd7908ee"
+  },
+  "Accessibility and Ethics.qmd": {
+    "Accessibility and Ethics.html": "3eb46262"
+  },
+  "Networks.qmd": {
+    "Networks.html": "b59fc9fa"
+  },
+  "Text.qmd": {
+    "Text.html": "4ea18955"
+  },
+  "Sankey.qmd": {
+    "Sankey.html": "7f5bc7f7"
+  }
+}

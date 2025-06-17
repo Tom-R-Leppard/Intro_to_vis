@@ -1,0 +1,3 @@
+"0","ggplot(class_costs, aes(x = class, y = cost)) +"
+"0","   geom_col(fill = ""steelblue"", color = ""black"") +"
+"0","  theme_minimal()"
