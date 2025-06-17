@@ -148,6 +148,10 @@ anim <- ggplot(coffee, aes(x = Data.Scores.Aroma, y = Data.Scores.Flavor)) +
   transition_states(Location.Country) +
   ease_aes('linear') +
   labs(title = 'Country: {closest_state}')
+```
 
+
+```{r eval = FALSE}
+# Then run this!
 animate(anim, nframes = 200, fps = 5) 
 ```
