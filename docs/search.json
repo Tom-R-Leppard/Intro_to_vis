@@ -30,5 +30,38 @@
       "Unit 1: Working with Data",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Types and Structures</span>"
     ]
+  },
+  {
+    "objectID": "Sankey.html",
+    "href": "Sankey.html",
+    "title": "11  Sankey Diagrams",
+    "section": "",
+    "text": "11.1 Static Sankeys\nYou can create a static sankey diagram with an extension of ggplot2, the ggsankey diagram. Be sure to install new packages as we use them!\nHere I create an example dataset designed to demonstrate the structure of the data used in sankey diagrams. The structure of the input data is key: each row represents an individual unit (in our example, a person) and the variables represent the stages or groupings that we want to connect. The make_long() function helps reshape the data into the special long format required by ggsankey.\nlibrary(ggsankey)\nlibrary(ggplot2)\n\n\ndf &lt;- data.frame(\n  person = 1:6,\n  department = c(\"HR\", \"HR\", \"IT\", \"IT\", \"Finance\", \"Finance\"),\n  role = c(\"Manager\", \"Analyst\", \"Engineer\", \"Manager\", \"Analyst\", \"Manager\")\n)\n\ndf_long &lt;- df %&gt;%\n  make_long(department, role)\nThe ggplot code is then built almost exactly like any other ggplot—by mapping aesthetics (x, node, next_node, etc.) and layering geoms (geom_sankey() for the flows and geom_sankey_label() for the node labels).\nggplot(df_long, aes(x = x,\n                    next_x = next_x,\n                    node = node,\n                    next_node = next_node,\n                    fill = node,\n                    label = node)) +\n  geom_sankey(flow.alpha = 0.6, node.color = \"gray30\") +\n  geom_sankey_label(size = 3, color = \"white\") +\n  theme_sankey(base_size = 16) +\n  labs(title = \"Departments connected to roles\", x = \"\", fill = \"Node\")\nTo summarize, static Sankey diagrams are a powerful way to represent how individuals, resources, or events “flow” between categories.\nStatic Sankey diagrams are especially useful when:\nIn the next section, we’ll look at interactive Sankey diagrams, which allow users to hover, highlight, and explore more complex flows dynamically.",
+    "crumbs": [
+      "Unit 3: Alternative Data Types",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Sankey Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "Sankey.html#static-sankeys",
+    "href": "Sankey.html#static-sankeys",
+    "title": "11  Sankey Diagrams",
+    "section": "",
+    "text": "You want to highlight categorical transitions (e.g., departments → roles, courses → majors, or stages in a process).\nThe dataset is not too large or complex, so that the flows remain legible.\nYou need a clean, publication-ready plot that integrates well with other ggplot2 visualizations.",
+    "crumbs": [
+      "Unit 3: Alternative Data Types",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Sankey Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "Sankey.html#dynamic-sankeys",
+    "href": "Sankey.html#dynamic-sankeys",
+    "title": "11  Sankey Diagrams",
+    "section": "11.2 Dynamic Sankeys",
+    "text": "11.2 Dynamic Sankeys\n\nlibrary(networkD3)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ lubridate 1.9.3     ✔ tibble    3.2.1\n✔ purrr     1.0.2     ✔ tidyr     1.3.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nWhile static Sankey diagrams are great for clear, publication-ready visuals, sometimes it’s useful to let your audience explore the flows interactively. The networkD3 package provides a way to build dynamic Sankey diagrams directly in R that you can click, drag, and hover over to reveal more detail.\nIn the example below, we extend our dataset by adding a third dimension: location. Now, instead of just seeing how departments map to roles, we can also track how those roles are distributed across locations (NY or SF).\nAfter preparing the nodes (unique categories across all stages) and links (pairs of connected categories with values that represent their flow), we can pass them into sankeyNetwork().\n\ndf &lt;- data.frame(\n  person = 1:6,\n  department = c(\"HR\", \"HR\", \"IT\", \"IT\", \"Finance\", \"Finance\"),\n  role = c(\"Manager\", \"Analyst\", \"Engineer\", \"Manager\", \"Analyst\", \"Manager\"),\n  location = c(\"NY\", \"NY\", \"SF\", \"NY\", \"SF\", \"SF\")\n)\n\n\nall_nodes &lt;- unique(c(df$department, df$role, df$location))\nnodes &lt;- data.frame(name = all_nodes)\n\n\nlinks_1 &lt;- df %&gt;%\n  group_by(department, role) %&gt;%\n  summarise(value = n(), .groups = \"drop\") %&gt;%\n  mutate(\n    source = match(department, nodes$name) - 1,\n    target = match(role, nodes$name) - 1\n  ) %&gt;%\n  select(source, target, value)\n\n\nlinks_2 &lt;- df %&gt;%\n  group_by(role, location) %&gt;%\n  summarise(value = n(), .groups = \"drop\") %&gt;%\n  mutate(\n    source = match(role, nodes$name) - 1,\n    target = match(location, nodes$name) - 1\n  ) %&gt;%\n  select(source, target, value)\n\n\nlinks &lt;- bind_rows(links_1, links_2)\n\nsankeyNetwork(\n  Links = links,\n  Nodes = nodes,\n  Source = \"source\",\n  Target = \"target\",\n  Value = \"value\",\n  NodeID = \"name\",\n  fontSize = 12,\n  nodeWidth = 30\n)\n\nLinks is a tbl_df. Converting to a plain data frame.\n\n\n\n\n\n\nThe resulting diagram has several advantages over a static plot:\n\nInteractivity: You can hover over flows to highlight connections and see the underlying values\nDrag-and-drop nodes: Rearrange nodes to explore different layouts and better understand relationships.\nScalability: Dynamic Sankeys handle more complex networks that would be difficult to interpret in a static image.\n\nThis makes networkd3 particularly useful when presenting data to an audience that wants to interact with the flows, or when working with more complicated structures that go beyond a simple two-level diagram.",
+    "crumbs": [
+      "Unit 3: Alternative Data Types",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Sankey Diagrams</span>"
+    ]
   }
 ]
